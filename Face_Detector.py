@@ -2,13 +2,13 @@ import cv2.cv2 as cv
 from random import randrange
 
 
-face_detector = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_detector = cv.CascadeClassifier('classifiers/haarcascade_frontalface_default.xml')
 
 # Basic smile detector. As long as teeth are showing it pretty much assumes a smile
-smile_detector = cv.CascadeClassifier('haarcascade_smile.xml')
+smile_detector = cv.CascadeClassifier('classifiers/haarcascade_smile.xml')
 
 # Choosing an image to detect
-img = cv.imread('Profile.jpg')
+img = cv.imread('images/Profile.jpg')
 
 # If wanted to use with default live video feed keep it 0
 # Otherwise insert static video file location (i.e. filename.mp4)
@@ -41,11 +41,11 @@ while True:
 
     # Looping through possible faces in an image
     for (x, y, w, h) in face_coordinates:
-        cv.rectangle(frame, (x, y), (x + w, y + h),
-                     (100, 200, 50),
-                     5)
+        cv.rectangle(frame, (x, y), (x + w, y + h), (100, 200, 50), 5)
 
-        # Obtain all data in the frame. N dimensional array slicing for sub-coordinates
+        # Obtain all data in the frame.
+        # N dimensional array slicing of frame for sub-coordinates
+        # Only looks in this frame for a smile
         face = frame[y:y + h, x:x + w]
 
         face_grayscale = cv.cvtColor(face, cv.COLOR_BGR2GRAY)
