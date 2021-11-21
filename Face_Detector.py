@@ -27,7 +27,7 @@ while True:
 
     # Converting an image to grayscale (Must do)
     # Haar algorithm looks for dark to light differences, color is irrelevant
-    # Also efficient, colors add more data
+    # Grayscale is efficient, colors add more data which is unnecessary
     frame_grayscale = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
     # Detect Faces of all sizes
